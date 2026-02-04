@@ -33,10 +33,6 @@ export const metadata: Metadata = {
         url: '/apax-logo.png',
         media: '(prefers-color-scheme: dark)',
       },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
     ],
     apple: '/apple-icon.png',
   },
