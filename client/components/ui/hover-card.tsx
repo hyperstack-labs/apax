@@ -56,7 +56,7 @@ function HoverCardSkeleton({ className, ...props }: React.ComponentProps<'div'>)
         {/* Title / Username */}
         <Skeleton className="h-4 w-3/4" />
         
-        {/* Bio / Details */}
+        {/* Bio / Details */} 
         <div className="space-y-1">
           <Skeleton className="h-3 w-full" />
           <Skeleton className="h-3 w-5/6" />
