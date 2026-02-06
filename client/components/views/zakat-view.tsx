@@ -331,7 +331,7 @@ export function ZakatView() {
 function ZakatViewSkeleton() {
   return (
     <div className="space-y-6">
-      {/* 1. Page Header Skeleton */}
+      {/* Page Header Skeleton */}
       <div className="flex items-center justify-between">
         <div className="space-y-2">
           <Skeleton className="h-8 w-48 bg-[#1A1A1A]" />
@@ -340,6 +340,29 @@ function ZakatViewSkeleton() {
         <Skeleton className="h-10 w-10 rounded-md bg-[#1A1A1A]" />
       </div>
 
+       {/* 2. Main Grid Skeleton */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        
+        {/* LEFT COLUMN (Assets) */}
+        <div className="lg:col-span-2 space-y-6">
+          
+          {/* APAX Holdings Card Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader className="flex flex-row items-center gap-3">
+               <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
+               <div className="space-y-2">
+                 <Skeleton className="h-5 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-56 bg-[#1A1A1A]" />
+               </div>
+            </CardHeader>
+            
+          </Card>
+
+          
+        </div>
+
+        
+      </div>
      
     </div>
   )
