@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface BullionCardProps {
   type: "gold" | "silver" | "platinum";
@@ -51,25 +52,20 @@ const BullionCard: React.FC<BullionCardProps> = ({
 
   const theme = metalStyles[type];
 
-  return (
+return (
     <>
-      {/* Animation Style Block */}
       <style jsx global>{`
        @keyframes pure-shimmer-loop {
           0% { transform: translateX(-150%) skewX(-45deg); }
           100% { transform: translateX(300%) skewX(-45deg); }
         }
         .group:hover .shimmer-effect {
-  /* A 1.5s loop where the shimmer takes 0.75s to cross, and waits 0.75s */
-  animation: pure-shimmer-loop 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
-}
+          animation: pure-shimmer-loop 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
       `}</style>
 
       <div
-        className={cn(
-          "group relative w-full h-[340px]",
-          className
-        )}
+        className={cn("group relative w-full h-[340px]", className)}
         style={{ perspective: "1000px" }}
       >
         {/* MAIN CARD SLAB */}
@@ -91,18 +87,17 @@ const BullionCard: React.FC<BullionCardProps> = ({
               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E")` }} 
           />
 
-          {/* Layer B: Glass Reflection (Static) */}
+          {/* Layer B: Glass Reflection */}
           <div className="absolute inset-0 z-20 rounded-xl bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-80 mix-blend-soft-light pointer-events-none" />
           
-          {/* Layer C: Moving Sheen (Holographic Loop) */}
+          {/* Layer C: Moving Sheen */}
           <div 
-  className={cn(
-    "shimmer-effect absolute inset-0 z-20 -translate-x-[140%] skew-x-[-45deg]",
-   
-    "bg-gradient-to-r from-transparent via-white/10 via-30% via-white/70 via-50% to-transparent",
-    "mix-blend-overlay"
-  )}
-/>
+            className={cn(
+              "shimmer-effect absolute inset-0 z-20 -translate-x-[140%] skew-x-[-45deg]",
+              "bg-gradient-to-r from-transparent via-white/10 via-30% via-white/70 via-50% to-transparent",
+              "mix-blend-overlay"
+            )}
+          />
           {/* Layer D: Sharp Edge Highlights */}
           <div className="absolute inset-0 z-20 border-t border-l border-white/50 rounded-xl mix-blend-overlay pointer-events-none" />
 
@@ -126,7 +121,7 @@ const BullionCard: React.FC<BullionCardProps> = ({
               <h3 
                 className={cn("text-5xl font-serif font-bold italic tracking-tighter", theme.text)}
                 style={{
-                  textShadow: theme.engrave, // Applies the "pressed in" look
+                  textShadow: theme.engrave,
                   opacity: 0.85 
                 }}
               >
@@ -166,4 +161,39 @@ const BullionCard: React.FC<BullionCardProps> = ({
   );
 };
 
+export function BullionCardSkeleton({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "relative w-full h-[340px] rounded-xl border border-white/10 bg-neutral-900/50 shadow-sm overflow-hidden",
+        className
+      )}
+    >
+      <div className="absolute inset-4 rounded-lg border border-white/5 flex flex-col items-center justify-between p-6">
+        {/*Purity Mark */}
+        <div className="flex flex-col items-center gap-2 w-full pt-2">
+          <Skeleton className="h-2 w-16 bg-white/10" />
+          <Skeleton className="h-5 w-12 bg-white/10" />
+        </div>
+
+        {/* Circle & Text */}
+        <div className="flex flex-col items-center gap-4 w-full">
+          <Skeleton className="h-12 w-12 rounded-full bg-white/10" />
+          <Skeleton className="h-10 w-24 bg-white/10" />
+        </div>
+
+        {/* Price Tag*/ }
+        <div className="w-full pt-4 border-t border-white/5 flex justify-between items-end">
+          <div className="space-y-2">
+             <Skeleton className="h-2 w-12 bg-white/10" />
+             <Skeleton className="h-6 w-20 bg-white/10" />
+          </div>
+          <Skeleton className="h-6 w-6 rounded-full bg-white/10" />
+        </div>
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-20" />
+    </div>
+  )
+}
 export default BullionCard;
