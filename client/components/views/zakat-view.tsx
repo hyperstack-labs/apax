@@ -355,7 +355,46 @@ function ZakatViewSkeleton() {
                  <Skeleton className="h-4 w-56 bg-[#1A1A1A]" />
                </div>
             </CardHeader>
-            
+            <CardContent className="space-y-6">
+              {/* 3-Col Asset Grid */}
+              <div className="grid gap-4 md:grid-cols-3">
+                 {/* Item 1 */}
+                 <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-20 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                 </div>
+                 {/* Item 2 */}
+                 <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-20 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                 </div>
+                 {/* Item 3 */}
+                 <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-20 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                 </div>
+              </div>
+
+              <div className="h-px w-full bg-[#2A2A2A]" />
+
+              {/* Total Row */}
+              <div className="flex items-center justify-between">
+                <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+                <Skeleton className="h-7 w-32 bg-[#1A1A1A]" />
+              </div>
+            </CardContent>
           </Card>
 
           
