@@ -412,8 +412,77 @@ function ZakatViewSkeleton() {
           </Card>
         </div>
 
+        {/* RIGHT COLUMN (Summary) */}
+        <div className="space-y-6">
+          
+          {/* Nisab Status Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader className="pb-3">
+               <Skeleton className="h-6 w-32 bg-[#1A1A1A]" />
+            </CardHeader>
+            <CardContent className="space-y-4">
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-20 bg-[#1A1A1A]" />
+               </div>
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-28 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+               </div>
+               <div className="h-px w-full bg-[#2A2A2A]" />
+               <div className="flex items-center gap-2">
+                 <Skeleton className="h-4 w-4 rounded-full bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+               </div>
+            </CardContent>
+          </Card>
+
+          {/* Zakat Due Calculation Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader className="pb-3 flex flex-row gap-3 items-center">
+               <Skeleton className="h-5 w-5 bg-[#1A1A1A]" />
+               <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+            </CardHeader>
+            <CardContent>
+               <div className="flex flex-col items-center py-4 space-y-3">
+                 <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-10 w-32 bg-[#1A1A1A]" />
+                 <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-10 w-full rounded-md mt-4 bg-[#1A1A1A]" />
+            </CardContent>
+          </Card>
+
+          {/* Live Prices Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+             <CardContent className="pt-6 space-y-4">
+                <div className="flex items-center gap-2">
+                   <Skeleton className="h-4 w-4 bg-[#1A1A1A]" />
+                   <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+                </div>
+                <div className="space-y-3">
+                   <div className="flex justify-between">
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                   </div>
+                   <div className="flex justify-between">
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                   </div>
+                   <div className="flex justify-between">
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                   </div>
+                </div>
+             </CardContent>
+          </Card>
+
+        </div>
+
         
       </div>
+
+
      
     </div>
   )

@@ -336,7 +336,7 @@ function PorViewSkeleton() {
              </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            {/* Row 1: Gold Mimic */}
+            {/*  Gold Mimic */}
             <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
                <div className="flex justify-between">
                  <Skeleton className="h-4 w-16 bg-[#1A1A1A]" /> 
@@ -345,7 +345,7 @@ function PorViewSkeleton() {
                <Skeleton className="h-2 w-full bg-[#1A1A1A]" /> 
             </div>
 
-            {/* Row 2: Silver Mimic */}
+            {/*  Silver Mimic */}
             <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
                <div className="flex justify-between">
                  <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
@@ -354,7 +354,7 @@ function PorViewSkeleton() {
                <Skeleton className="h-2 w-full bg-[#1A1A1A]" />
             </div>
 
-            {/* Row 3: Platinum Mimic */}
+            {/*  Platinum Mimic */}
             <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
                <div className="flex justify-between">
                  <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
