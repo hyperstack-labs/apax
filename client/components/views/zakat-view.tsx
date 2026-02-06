@@ -43,6 +43,20 @@ export function ZakatView() {
     setHasCalculated(true)
   }
 
+  // useState and useEffect for testing
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+  }, [])
+
+  if(isLoading) {
+    return <ZakatViewSkeleton />
+  }
+
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
@@ -310,6 +324,23 @@ export function ZakatView() {
           </Card>
         </div>
       </div>
+    </div>
+  )
+}
+
+function ZakatViewSkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* 1. Page Header Skeleton */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-48 bg-[#1A1A1A]" />
+          <Skeleton className="h-4 w-64 bg-[#1A1A1A]" />
+        </div>
+        <Skeleton className="h-10 w-10 rounded-md bg-[#1A1A1A]" />
+      </div>
+
+     
     </div>
   )
 }
