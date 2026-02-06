@@ -9,12 +9,14 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+
 
 export function ZakatView() {
   const { userHoldings, metalPrices, zakatCalculation, calculateZakat } = useAPAXStore()
