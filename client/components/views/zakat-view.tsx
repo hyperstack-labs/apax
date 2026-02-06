@@ -397,7 +397,19 @@ function ZakatViewSkeleton() {
             </CardContent>
           </Card>
 
-          
+          {/* Additional Assets Card Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader>
+               <Skeleton className="h-5 w-48 mb-2 bg-[#1A1A1A]" />
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+            </CardHeader>
+            <CardContent>
+               <div className="space-y-2">
+                 <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-10 w-full rounded-md bg-[#0A0A0A] border border-[#2A2A2A]" />
+               </div>
+            </CardContent>
+          </Card>
         </div>
 
         
