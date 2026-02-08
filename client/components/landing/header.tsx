@@ -42,22 +42,21 @@ export function LandingHeader() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-vault ${
-        isScrolled ? 'glass-heavy py-3' : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-vault ${isScrolled ? 'glass-heavy py-3' : 'bg-transparent py-5'
+        }`}
     >
       <div className="container mx-auto px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/apax-logo.png"
+            src="/apax-logo.png"
             alt="APAX"
             width={40}
             height={40}
             className="rounded-sm"
           />
           <div className="hidden sm:block">
-            <span className="text-lg font-serif text-gradient-gold tracking-tight">APAX</span>
+            <span className="text-lg font-serif font-bold text-gradient-gold tracking-tight">APAX</span>
             <span className="block text-[9px] text-[#888888] uppercase tracking-[0.15em] -mt-0.5">Precious Metal Vault</span>
           </div>
         </Link>

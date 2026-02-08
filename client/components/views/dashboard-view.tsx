@@ -40,7 +40,7 @@ export function DashboardView() {
         <div className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded-lg gold-glow">
             <Image
-              src="/images/apax-logo.png"
+              src="/apax-logo.png"
               alt="APAX Emblem"
               fill
               className="object-cover"
