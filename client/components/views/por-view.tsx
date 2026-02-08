@@ -283,7 +283,7 @@ export function PorView() {
             </div>
           </div>
         </CardHeader>
-        <CardContent className='p-0'>
+        <CardContent className='p-0 pl-4'>
           <ScrollArea className="h-87.5 pr-4 w-full">
             {/* LST */}
           <LiveSecurityTerminal logs={auditLogs} />

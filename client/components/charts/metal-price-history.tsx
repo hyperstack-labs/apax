@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo } from 'react'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { useAPAXStore } from '@/lib/store'
 
-// mock data generator
+// mock data generate
 const generateHistoricalData = (currentPrice: number) => {
   return [
     { time: '08:00', price: currentPrice * 0.982 },
@@ -18,9 +18,15 @@ const generateHistoricalData = (currentPrice: number) => {
 }
 
 export function MetalPriceHistoryChart() {
-  const { metalPrices } = useAPAXStore()
-  const chartData = generateHistoricalData(metalPrices.gold)
 
+  //global state access
+  const { metalPrices } = useAPAXStore()
+  
+  const chartData = useMemo(() => 
+    generateHistoricalData(metalPrices.gold), 
+  [metalPrices.gold])
+
+  //chart
   return (
     <div className="w-full h-80 bg-card/50 border border-border rounded-xl p-4 institutional-shadow overflow-hidden relative">
       <div className="absolute inset-0 mesh-gradient-gold opacity-30 pointer-events-none" />
@@ -51,7 +57,7 @@ export function MetalPriceHistoryChart() {
             className="font-vault opacity-60"
           />
           
-          <YAxis hide domain={['dataMin - 100', 'dataMax + 100']} />
+          <YAxis hide domain={['dataMin * 0.95', 'dataMax * 1.05']} />
 
           <Tooltip
             cursor={{ 
@@ -63,11 +69,11 @@ export function MetalPriceHistoryChart() {
             content={({ active, payload }) => {
               if (active && payload && payload.length) {
                 return (
-                  <div className="bg-obsidian/90 backdrop-blur-md border border-primary/20 p-3 rounded-lg shadow-2xl">
-                    <p className="text-[10px] font-vault text-muted-foreground uppercase tracking-widest mb-1">
+                  <div className="bg-[#0A0A0A]/90 backdrop-blur-md border border-[#D4AF37]/20 p-3 rounded-lg shadow-2xl">
+                    <p className="text-[10px] font-vault text-[#666666] uppercase tracking-widest mb-1">
                       {payload[0].payload.time} UTC
                     </p>
-                    <p className="text-sm font-vault font-medium text-primary">
+                    <p className="text-sm font-vault font-medium text-[#D4AF37]">
                       ${payload[0].value?.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </p>
                   </div>
