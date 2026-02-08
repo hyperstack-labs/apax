@@ -112,7 +112,7 @@ export default function LoginPage() {
             <div className="relative">
               <div className="absolute inset-0 bg-[#D4AF37]/20 rounded-full blur-xl" />
               <Image
-                src="/images/apax-logo.png"
+                src="/apax-logo.png"
                 alt="APAX"
                 width={80}
                 height={80}

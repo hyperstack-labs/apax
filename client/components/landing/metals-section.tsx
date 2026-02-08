@@ -54,24 +54,23 @@ export function MetalsSection() {
             APX-i Composition
           </h2>
           <p className="text-[#888888] leading-relaxed">
-            A weighted basket of three precious metals, rebalanced quarterly. 
+            A weighted basket of three precious metals, rebalanced quarterly.
             Each holding is independently audited and fully allocated in your name.
           </p>
         </div>
 
         {/* Hero Image - Full width */}
-        <div className="relative mb-16 rounded-sm overflow-hidden border border-[#1A1A1A]">
+        <div className="relative mb-16 rounded-sm overflow-hidden border border-[#1A1A1A] aspect-[21/9] bg-[#0A0A0A]">
           <Image
-            src="/images/apax-hero.png"
+            src="/apax-hero.png"
             alt="APAX Precious Metals Vault"
-            width={1200}
-            height={500}
-            className="w-full h-auto object-cover"
+            fill
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent" />
-          
+
           {/* Overlay stats */}
-          <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-6">
+          <div className="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-4">
             <div className="glass-heavy px-4 py-3 rounded-sm">
               <p className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Total Weight</p>
               <p className="text-lg font-mono text-[#D4AF37]">54,328 kg</p>
@@ -90,15 +89,14 @@ export function MetalsSection() {
         {/* Metal Cards - Asymmetric heights */}
         <div className="grid md:grid-cols-3 gap-6">
           {metals.map((metal, index) => (
-            <div 
+            <div
               key={metal.symbol}
-              className={`group relative p-6 rounded-sm bg-[#111111] border border-[#1A1A1A] hover:border-opacity-30 transition-vault overflow-hidden ${
-                index === 1 ? 'md:translate-y-6' : ''
-              }`}
+              className={`group relative p-6 rounded-sm bg-[#111111] border border-[#1A1A1A] hover:border-opacity-30 transition-vault overflow-hidden ${index === 1 ? 'md:translate-y-6' : ''
+                }`}
               style={{ '--border-hover': metal.color } as React.CSSProperties}
             >
               {/* Subtle glow on hover */}
-              <div 
+              <div
                 className="absolute -top-24 -right-24 w-48 h-48 rounded-full opacity-0 blur-3xl group-hover:opacity-10 transition-vault"
                 style={{ backgroundColor: metal.color }}
               />
@@ -107,7 +105,7 @@ export function MetalsSection() {
               <div className="flex items-start justify-between mb-5">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <div 
+                    <div
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: metal.color }}
                     />
@@ -115,7 +113,7 @@ export function MetalsSection() {
                   </div>
                   <h3 className="text-xl font-serif text-[#E8E8E8]">{metal.name}</h3>
                 </div>
-                
+
                 {/* Price badge */}
                 <div className="text-right">
                   <p className="text-lg font-mono" style={{ color: metal.color }}>{metal.price}</p>

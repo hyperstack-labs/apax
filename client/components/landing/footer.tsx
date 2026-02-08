@@ -66,7 +66,7 @@ export function LandingFooter() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-5">
               <Image
-                src="/images/apax-logo.png"
+                src="/apax-logo.png"
                 alt="APAX"
                 width={36}
                 height={36}
@@ -75,11 +75,11 @@ export function LandingFooter() {
               <span className="text-lg font-serif text-gradient-gold">APAX</span>
             </Link>
             <p className="text-sm text-[#888888] max-w-sm mb-6 leading-relaxed">
-              Institutional-grade access to precious metals. 
-              Tokenized ownership with full redemption rights. 
+              Institutional-grade access to precious metals.
+              Tokenized ownership with full redemption rights.
               Built on SidraChain.
             </p>
-            
+
             {/* Social links */}
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -142,7 +142,7 @@ export function LandingFooter() {
             {new Date().getFullYear()} APAX Holdings Ltd. All rights reserved.
           </p>
           <p className="text-xs text-[#888888]">
-            Built on <span className="text-[#D4AF37]">SidraChain</span> | 
+            Built on <span className="text-[#D4AF37]">SidraChain</span> |
             <span className="text-[#888888]"> Dubai, UAE</span>
           </p>
         </div>

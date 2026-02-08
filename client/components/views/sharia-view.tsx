@@ -97,8 +97,8 @@ export function ShariaView() {
             Complete transparency on our Islamic finance compliance
           </p>
         </div>
-        <Badge 
-          variant="outline" 
+        <Badge
+          variant="outline"
           className="border-emerald-500/30 bg-emerald-500/10 text-emerald-500"
         >
           <CheckCircle className="h-3 w-3 mr-1" />
@@ -110,7 +110,7 @@ export function ShariaView() {
       <Card className="overflow-hidden border-[#D4AF37]/30">
         <div className="relative h-48 md:h-64">
           <Image
-            src="/images/apax-team.png"
+            src="/apax-team.png"
             alt="APAX Team with Bullion"
             fill
             className="object-cover opacity-40"
@@ -122,8 +122,8 @@ export function ShariaView() {
                 The World&apos;s First Sharia-Compliant RWA Platform
               </h2>
               <p className="text-sm text-[#C0C0C0]">
-                APAX bridges centuries-old Islamic finance principles with cutting-edge 
-                blockchain technology, creating a transparent and ethical ecosystem for 
+                APAX bridges centuries-old Islamic finance principles with cutting-edge
+                blockchain technology, creating a transparent and ethical ecosystem for
                 precious metal investment.
               </p>
             </div>
