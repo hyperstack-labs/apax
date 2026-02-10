@@ -345,6 +345,46 @@ function RedemptionViewSkeleton() {
       </Card>
 
       
+      {/* Bullion Selection Grid Skeleton */}
+      <div>
+        <Skeleton className="h-6 w-56 mb-4 bg-[#1A1A1A]" />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(3)].map((_, i) => (
+            <Card key={i} className="bg-[#111111] border-[#2A2A2A]">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-4">
+                  <Skeleton className="h-20 w-20 rounded-lg bg-[#1A1A1A] shrink-0" />
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 rounded-full bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-24 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-32 bg-[#1A1A1A]" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Info Cards Skeleton */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {[...Array(2)].map((_, i) => (
+          <Card key={i} className="bg-[#111111] border-[#2A2A2A]">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <Skeleton className="h-5 w-5 bg-[#1A1A1A]" />
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-5 w-40 bg-[#1A1A1A]" />
+                  <Skeleton className="h-12 w-full bg-[#1A1A1A]" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
       
     </div>
   )
