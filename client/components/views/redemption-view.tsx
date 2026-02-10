@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Flame, Package, Truck, Clock, Info, AlertTriangle } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const bullionOptions = [
   {
@@ -65,9 +66,20 @@ const bullionOptions = [
   }
 ]
 
+// For simultion of Loading. Will remove it once data fetching is implemented
+
+
 export function RedemptionView() {
   const { userHoldings, metalPrices } = useAPAXStore()
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
+
+
+  const [ isLoading, setIsLoading ] = useState(true)
+
+useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    return() => clearTimeout(timer)
+  }, [])
 
   const calculatePrice = (metal: string, grams: number) => {
     const pricePerGram = metal === 'Gold' 
@@ -82,6 +94,10 @@ export function RedemptionView() {
     if (metal === 'Gold') return userHoldings.goldGrams >= grams
     if (metal === 'Silver') return userHoldings.silverGrams >= grams
     return userHoldings.platinumGrams >= grams
+  }
+
+  if(isLoading) {
+    return <RedemptionViewSkeleton />
   }
 
   return (
@@ -281,6 +297,24 @@ export function RedemptionView() {
           </div>
         </CardContent>
       </Card>
+    </div>
+  )
+}
+
+
+function RedemptionViewSkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* 1. Page Header Skeleton */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
+          <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
+        </div>
+        <Skeleton className="h-6 w-32 rounded-full bg-[#1A1A1A]" />
+      </div>
+
+      
     </div>
   )
 }
