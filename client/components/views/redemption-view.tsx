@@ -305,7 +305,7 @@ useEffect(() => {
 function RedemptionViewSkeleton() {
   return (
     <div className="space-y-6">
-      {/* 1. Page Header Skeleton */}
+      {/* Page Header Skeleton */}
       <div className="flex items-center justify-between">
         <div className="space-y-2">
           <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
@@ -313,7 +313,20 @@ function RedemptionViewSkeleton() {
         </div>
         <Skeleton className="h-6 w-32 rounded-full bg-[#1A1A1A]" />
       </div>
+      {/* Coming Soon Banner Skeleton */}
+      <Card className="border-[#D4AF37]/30 bg-[#1A1A1A]/50">
+        <CardContent className="py-6">
+          <div className="flex items-center gap-4">
+            <Skeleton className="h-14 w-14 rounded-full bg-[#1A1A1A]" />
+            <div className="flex-1 space-y-2">
+              <Skeleton className="h-6 w-48 bg-[#1A1A1A]" />
+              <Skeleton className="h-4 w-full max-w-2xl bg-[#1A1A1A]" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
+      
       
     </div>
   )
