@@ -325,6 +325,24 @@ function RedemptionViewSkeleton() {
           </div>
         </CardContent>
       </Card>
+      {/*  "How It Works" Skeleton */}
+      <Card className="bg-[#111111] border-[#2A2A2A]">
+        <CardHeader>
+          <Skeleton className="h-6 w-64 bg-[#1A1A1A]" />
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-6 md:grid-cols-4">
+            {/* Generate 4 Step Placeholders */}
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex flex-col items-center text-center space-y-3">
+                <Skeleton className="h-12 w-12 rounded-full bg-[#1A1A1A]" />
+                <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+                <Skeleton className="h-3 w-32 bg-[#1A1A1A]" />
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
       
       
