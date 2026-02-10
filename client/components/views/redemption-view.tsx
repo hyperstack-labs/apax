@@ -385,7 +385,15 @@ function RedemptionViewSkeleton() {
           </Card>
         ))}
       </div>
-      
+       {/* Fee Notice Skeleton */}
+      <Card className="border-[#2A2A2A] bg-[#1A1A1A]/30">
+        <CardContent className="py-4">
+          <div className="flex items-center gap-3">
+            <Skeleton className="h-5 w-5 bg-[#1A1A1A]" />
+            <Skeleton className="h-4 w-full max-w-lg bg-[#1A1A1A]" />
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
