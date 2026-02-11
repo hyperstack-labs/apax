@@ -41,7 +41,7 @@ const STAGES = [
 export function VerificationProgress({
   status: externalStatus = "idle", //the control
   onComplete,
-  isSimulated = true, //set to false for control otherwise true if automated rendering
+  isSimulated = false, //set to false for control otherwise true if automated rendering
 }: VerificationProgressProps) {
     
   const [mounted, setMounted] = useState(false);
