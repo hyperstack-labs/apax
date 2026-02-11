@@ -302,7 +302,7 @@ function ShariaViewSkeleton() {
         </div>
         <Skeleton className="h-6 w-40 rounded-full bg-[#1A1A1A]" />
       </div>
-{/* 2. Hero Banner Skeleton */}
+      {/* Hero Banner Skeleton */}
       <Card className="overflow-hidden border-[#D4AF37]/30 bg-[#1A1A1A]">
         <div className="relative h-48 md:h-64 flex items-center p-8">
            <div className="w-full max-w-xl space-y-4">
@@ -312,8 +312,24 @@ function ShariaViewSkeleton() {
            </div>
         </div>
       </Card>
+ {/* 3. Compliance Principles Skeleton */}
+      <div>
+        <Skeleton className="h-6 w-56 mb-4 bg-[#1A1A1A]" />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[...Array(4)].map((_, i) => (
+            <Card key={i} className="bg-[#111111] border-[#2A2A2A]">
+              <CardContent className="pt-6 space-y-3">
+                <Skeleton className="h-9 w-9 rounded-lg bg-[#1A1A1A]" />
+                <Skeleton className="h-5 w-32 bg-[#1A1A1A]" />
+                <Skeleton className="h-3 w-full bg-[#1A1A1A]" />
+                <Skeleton className="h-3 w-4/5 bg-[#1A1A1A]" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
 
-     
+      
       
     </div>
   )
