@@ -312,7 +312,7 @@ function ShariaViewSkeleton() {
            </div>
         </div>
       </Card>
- {/* 3. Compliance Principles Skeleton */}
+       {/* Compliance Principles Skeleton */}
       <div>
         <Skeleton className="h-6 w-56 mb-4 bg-[#1A1A1A]" />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -329,7 +329,32 @@ function ShariaViewSkeleton() {
         </div>
       </div>
 
+      {/* Advisory Board Skeleton */}
+      <Card className="bg-[#111111] border-[#2A2A2A]">
+        <CardHeader className="flex flex-row items-center gap-3">
+           <Skeleton className="h-9 w-9 rounded-lg bg-[#1A1A1A]" />
+           <div className="space-y-2">
+             <Skeleton className="h-5 w-48 bg-[#1A1A1A]" />
+             <Skeleton className="h-4 w-64 bg-[#1A1A1A]" />
+           </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center text-center space-y-3">
+                 <Skeleton className="h-12 w-12 rounded-full bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+                 <Skeleton className="h-3 w-24 bg-[#1A1A1A]" />
+                 <Skeleton className="h-3 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-5 w-20 rounded-full bg-[#1A1A1A]" />
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       
+     
       
     </div>
   )
