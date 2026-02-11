@@ -294,7 +294,7 @@ const [isLoading, setIsLoading ] = useState(true)
 function ShariaViewSkeleton() {
   return (
     <div className="space-y-6">
-      {/* 1. Page Header Skeleton */}
+      {/* Page Header Skeleton */}
       <div className="flex items-center justify-between">
         <div className="space-y-2">
           <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
@@ -302,7 +302,18 @@ function ShariaViewSkeleton() {
         </div>
         <Skeleton className="h-6 w-40 rounded-full bg-[#1A1A1A]" />
       </div>
+{/* 2. Hero Banner Skeleton */}
+      <Card className="overflow-hidden border-[#D4AF37]/30 bg-[#1A1A1A]">
+        <div className="relative h-48 md:h-64 flex items-center p-8">
+           <div className="w-full max-w-xl space-y-4">
+             <Skeleton className="h-8 w-3/4 bg-[#0A0A0A]" />
+             <Skeleton className="h-4 w-full bg-[#0A0A0A]" />
+             <Skeleton className="h-4 w-5/6 bg-[#0A0A0A]" />
+           </div>
+        </div>
+      </Card>
 
+     
       
     </div>
   )
