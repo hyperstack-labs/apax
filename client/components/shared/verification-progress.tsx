@@ -42,7 +42,7 @@ const STAGES = [
 export function VerificationProgress({
   status: externalStatus = "idle", //the control
   onComplete,
-  isSimulated = true, //set to false for control otherwise true if automated rendering
+  isSimulated = true, //set to false for control with props otherwise true if automated rendering
 }: VerificationProgressProps) {
     
   const [mounted, setMounted] = useState(false);
@@ -232,9 +232,22 @@ export function VerificationProgress({
                 className="py-10 flex flex-col items-center text-center space-y-6 pointer-events-none"
               >
                 <div className="relative">
-                  {/* Removed all motion wrappers and drop-shadows that cause glowing on hover */}
+                  {/* green glow pulse */}
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.5, 0.15, 0.5],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-0 rounded-full bg-[#22C55E]/25 blur-xl"
+                  />
+                  
                   <div 
-                    className="relative w-24 h-24 rounded-full border border-[#22C55E]/30 flex items-center justify-center bg-[#22C55E]/5"
+                    className="relative w-24 h-24 rounded-full border border-[#22C55E]/30 flex items-center justify-center bg-[#22C55E]/5 shadow-[0_0_20px_rgba(34,197,94,0.1)]"
                   >
                     <ShieldCheck className="w-12 h-12 text-[#22C55E]" />
                   </div>
