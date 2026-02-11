@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { PortfolioOverview } from '@/components/portfolio-overview'
 import { AssetAllocationChart } from '@/components/asset-allocation-chart'
 import { ShariaCertificationHub } from '@/components/sharia-certification-hub'
+import { VerificationProgress } from '@/components/shared/verification-progress'
 
 export function DashboardView() {
   return (
