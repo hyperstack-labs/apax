@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { Skeleton } from '@/components/ui/skeleton'
+import {useEffect, useState } from 'react'
 
 const advisoryBoard = [
   {
@@ -84,7 +86,21 @@ const documents = [
   }
 ]
 
+
+
 export function ShariaView() {
+
+const [isLoading, setIsLoading ] = useState(true)
+
+  useEffect(() => {
+      const timer = setTimeout(() => setIsLoading(false), 2000)
+      return() => clearTimeout(timer)
+    }, [])
+  
+
+    if(isLoading){ 
+      return <ShariaViewSkeleton />
+    }
   return (
     <div className="space-y-6">
       {/* Page Header */}
@@ -270,6 +286,24 @@ export function ShariaView() {
           </div>
         </CardContent>
       </Card>
+    </div>
+  )
+}
+
+
+function ShariaViewSkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* 1. Page Header Skeleton */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
+          <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
+        </div>
+        <Skeleton className="h-6 w-40 rounded-full bg-[#1A1A1A]" />
+      </div>
+
+      
     </div>
   )
 }
