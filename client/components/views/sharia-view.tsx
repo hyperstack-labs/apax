@@ -353,7 +353,49 @@ function ShariaViewSkeleton() {
         </CardContent>
       </Card>
 
-      
+      {/* 5. Document Vault Skeleton */}
+      <Card className="bg-[#111111] border-[#2A2A2A]">
+        <CardHeader className="flex flex-row items-center gap-3">
+           <Skeleton className="h-9 w-9 rounded-lg bg-[#1A1A1A]" />
+           <div className="space-y-2">
+             <Skeleton className="h-5 w-40 bg-[#1A1A1A]" />
+             <Skeleton className="h-4 w-64 bg-[#1A1A1A]" />
+           </div>
+        </CardHeader>
+        <CardContent>
+           <div className="space-y-3">
+             {[...Array(5)].map((_, i) => (
+               <div key={i} className="flex items-center justify-between p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A]">
+                  <div className="flex items-center gap-4">
+                     <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
+                     <div className="space-y-2">
+                        <Skeleton className="h-4 w-64 bg-[#1A1A1A]" />
+                        <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+                     </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <Skeleton className="h-5 w-20 bg-[#1A1A1A]" />
+                     <Skeleton className="h-8 w-8 rounded-md bg-[#1A1A1A]" />
+                  </div>
+               </div>
+             ))}
+           </div>
+        </CardContent>
+      </Card>
+
+      {/* Verification Banner Skeleton */}
+      <Card className="border-emerald-500/30 bg-[#1A1A1A]/30">
+         <CardContent className="py-6 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+               <Skeleton className="h-12 w-12 rounded-full bg-[#1A1A1A]" />
+               <div className="space-y-2">
+                  <Skeleton className="h-5 w-64 bg-[#1A1A1A]" />
+                  <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
+               </div>
+            </div>
+            <Skeleton className="h-10 w-48 bg-[#1A1A1A]" />
+         </CardContent>
+      </Card>
      
       
     </div>
