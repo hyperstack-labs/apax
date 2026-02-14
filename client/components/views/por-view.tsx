@@ -366,26 +366,47 @@ function PorViewSkeleton() {
         </Card>
 
         {/* Right Card Skeleton (Tokens) */}
-        <Card className="bg-[#111111] border-[#2A2A2A]" >
-            <CardHeader className="flex flex-row items-center gap-4">
-              <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]"/>
-              
-              <div className="space-y-2">
-                <Skeleton className="h-5 w-48 bg-[#1A1A1A]"/>
-                <Skeleton className="h-4 w-32 bg-[#1A1A1A]"/>
-              </div>
+        <Card className="bg-[#111111] border-[#2A2A2A]">
+          <CardHeader className="flex flex-row items-center gap-4">
+             <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
+             <div className="space-y-2">
+               <Skeleton className="h-5 w-48 bg-[#1A1A1A]" />
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+             </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Big Token Number Block */}
+            <div className="p-6 rounded-lg border border-[#2A2A2A] bg-[#1A1A1A]/20 flex flex-col items-center gap-2">
+               <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+               <Skeleton className="h-10 w-64 bg-[#1A1A1A]" />
+               <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+            </div>
 
-            </CardHeader>
+            {/* 3 Small Grids Breakdown */}
+            <div className="grid grid-cols-3 gap-3">
+               <div className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center gap-2">
+                  <Skeleton className="h-3 w-12 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+               <div className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center gap-2">
+                  <Skeleton className="h-3 w-12 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+               <div className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center gap-2">
+                  <Skeleton className="h-3 w-12 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+            </div>
 
-            <CardContent className="space-y-4"> 
-              <Skeleton className="h-32 w-full rounded-lg bg-[#1A1A1A]" />
-                <div className="grid grid-cols-3 gap-3">
-                  <Skeleton className="h-16 rounded-lg bg-[#1A1A1A]" />
-                  <Skeleton className="h-16 rounded-lg bg-[#1A1A1A]" />
-                  <Skeleton className="h-16 rounded-lg bg-[#1A1A1A]" />
-                </div>
-              <Skeleton className="h-20 w-full rounded-lg bg-[#1A1A1A]" />
-            </CardContent>
+            {/* Reserve Ratio Bottom Block */}
+            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#1A1A1A]/20 space-y-3">
+               <div className="flex justify-between">
+                  <Skeleton className="h-5 w-32 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-3 w-full bg-[#1A1A1A]" />
+            </div>
+          </CardContent>
         </Card>
 
         {/* Live Security Feed skeleton*/}
