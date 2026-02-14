@@ -309,12 +309,45 @@ export function PorView() {
 
 function PorViewSkeleton() {
   return (
-    <div classname="flex items-center justify-between">
+
+    <div className="space-y-7">
+      <div className="flex items-center justify-between">
       <div className="space-y-2">
         <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
         <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
       </div>
       <Skeleton className="h-10 w-32 bg-[#1A1A1A]" />
     </div>
+
+    <Skeleton className="h-28 w-full rounded-xl bg-[#1A1A1A]"/>
+
+      <div className="grid gap-6 lg:griid-cols-2">
+          <Card className="bg-[#111111] border=[#2A2A2A]">
+            <CardHeader className="flex flex-row items-center gap-4">
+              <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]"/>
+
+              <div className="spance-y-2">
+                  <Skeleton className="h-5 w-48 bg-[#1A1A1A]"/>
+                  <Skeleton className="h-4 w-32 bg-[#1A1A1A]"/>
+              </div>
+            </CardHeader>
+
+            <CardContent className="space-y-4">
+              <Skeleton className="h-20 w-full rounded-lg bg-[#1A1A1A]"/>
+              <Skeleton className="h-20 w-full rounded-lg bg-[#1A1A1A]"/>
+              <Skeleton className="h-20 w-full rounded-lg bg-[#1A1A1A]"/>
+              
+              <div className="pt-4 border-5 border-[#2A2A2A] flex justify-between">
+                 <Skeleton className="h-4 w-24 rounded-lg bg-[#1A1A1A]"/>
+                  <Skeleton className="h-6 w-32 rounded-lg bg-[#1A1A1A]"/>
+              </div>
+            </CardContent>
+          </Card>
+
+
+
+      </div>
+    </div>
+    
   )
 }
