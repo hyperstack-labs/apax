@@ -43,6 +43,10 @@ export function PorView() {
     return `${Math.floor(diffMins / 1440)}d ago`
   }
 
+  if(isLoading) {
+    return <PorViewSkeleton />
+  }
+
   return (
     <div className="space-y-6 ">
       {/* Page Header */}
@@ -299,6 +303,18 @@ export function PorView() {
           </ScrollArea>
         </CardContent>
       </Card>
+    </div>
+  )
+}
+
+function PorViewSkeleton() {
+  return (
+    <div classname="flex items-center justify-between">
+      <div className="space-y-2">
+        <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
+        <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
+      </div>
+      <Skeleton className="h-10 w-32 bg-[#1A1A1A]" />
     </div>
   )
 }
