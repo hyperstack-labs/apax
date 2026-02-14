@@ -9,72 +9,33 @@ import { Badge } from '@/components/ui/badge'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
 
 const bullionOptions = [
-  {
-    id: 'gold-1g',
-    metal: 'Gold',
-    weight: '1g',
-    weightGrams: 1,
-    image: '/images/image.png',
-    color: '#D4AF37',
-    tokensRequired: 1
-  },
-  {
-    id: 'gold-10g',
-    metal: 'Gold',
-    weight: '10g',
-    weightGrams: 10,
-    image: '/images/image.png',
-    color: '#D4AF37',
-    tokensRequired: 10
-  },
-  {
-    id: 'gold-100g',
-    metal: 'Gold',
-    weight: '100g',
-    weightGrams: 100,
-    image: '/images/image.png',
-    color: '#D4AF37',
-    tokensRequired: 100
-  },
-  {
-    id: 'silver-100g',
-    metal: 'Silver',
-    weight: '100g',
-    weightGrams: 100,
-    image: '/images/image.png',
-    color: '#C0C0C0',
-    tokensRequired: 100
-  },
-  {
-    id: 'silver-1kg',
-    metal: 'Silver',
-    weight: '1kg',
-    weightGrams: 1000,
-    image: '/images/image.png',
-    color: '#C0C0C0',
-    tokensRequired: 1000
-  },
-  {
-    id: 'platinum-50g',
-    metal: 'Platinum',
-    weight: '50g',
-    weightGrams: 50,
-    image: '/images/image.png',
-    color: '#E5E4E2',
-    tokensRequired: 50
-  }
+  { id: 'gold-1g', metal: 'Gold', weight: '1g', weightGrams: 1, image: '/images/image.png', color: '#D4AF37', tokensRequired: 1 },
+  { id: 'gold-10g', metal: 'Gold', weight: '10g', weightGrams: 10, image: '/images/image.png', color: '#D4AF37', tokensRequired: 10 },
+  { id: 'gold-100g', metal: 'Gold', weight: '100g', weightGrams: 100, image: '/images/image.png', color: '#D4AF37', tokensRequired: 100 },
+  { id: 'silver-100g', metal: 'Silver', weight: '100g', weightGrams: 100, image: '/images/image.png', color: '#C0C0C0', tokensRequired: 100 },
+  { id: 'silver-1kg', metal: 'Silver', weight: '1kg', weightGrams: 1000, image: '/images/image.png', color: '#C0C0C0', tokensRequired: 1000 },
+  { id: 'platinum-50g', metal: 'Platinum', weight: '50g', weightGrams: 50, image: '/images/image.png', color: '#E5E4E2', tokensRequired: 50 }
 ]
+
+type Step = 1 | 2 | 3
 
 export function RedemptionView() {
   const { userHoldings, metalPrices } = useAPAXStore()
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
+  const [currentStep, setCurrentStep] = useState<Step>(1)
+  const [shippingInfo, setShippingInfo] = useState({ name: '', address: '', city: '', country: '' })
+  const [isBurning, setIsBurning] = useState(false)
+  const [burnSuccess, setBurnSuccess] = useState(false)
+
+  const selectedBullion = bullionOptions.find((b) => b.id === selectedOption)
 
   const calculatePrice = (metal: string, grams: number) => {
-    const pricePerGram = metal === 'Gold' 
-      ? metalPrices.gold / 31.1035
-      : metal === 'Silver'
-      ? metalPrices.silver / 31.1035
-      : metalPrices.platinum / 31.1035
+    const pricePerGram =
+      metal === 'Gold'
+        ? metalPrices.gold / 31.1035
+        : metal === 'Silver'
+        ? metalPrices.silver / 31.1035
+        : metalPrices.platinum / 31.1035
     return pricePerGram * grams
   }
 
@@ -84,8 +45,30 @@ export function RedemptionView() {
     return userHoldings.platinumGrams >= grams
   }
 
+  const handleNext = () => {
+    if (currentStep === 1 && selectedBullion && !canAfford(selectedBullion.metal, selectedBullion.weightGrams)) {
+      alert('Insufficient holdings for this option!')
+      return
+    }
+    setCurrentStep((prev) => (prev < 3 ? (prev + 1) as Step : prev))
+  }
+
+  const handleBack = () => setCurrentStep((prev) => (prev > 1 ? (prev - 1) as Step : prev))
+
+  const handleBurn = async () => {
+    setIsBurning(true)
+    setBurnSuccess(false)
+
+    // simulate high-fidelity burn transaction
+    await new Promise((res) => setTimeout(res, 3000))
+
+    setIsBurning(false)
+    setBurnSuccess(true)
+  }
+
   return (
     <div className="space-y-6">
+
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -96,10 +79,7 @@ export function RedemptionView() {
             Convert your tokens into physical bullion delivered to your door
           </p>
         </div>
-        <Badge 
-          variant="outline" 
-          className="border-[#D4AF37]/30 bg-[#D4AF37]/10 text-[#D4AF37] gold-shimmer"
-        >
+        <Badge variant="outline" className="border-[#D4AF37]/30 bg-[#D4AF37]/10 text-[#D4AF37] gold-shimmer">
           <Clock className="h-3 w-3 mr-1" />
           Coming Soon
         </Badge>
@@ -164,14 +144,117 @@ export function RedemptionView() {
         </CardContent>
       </Card>
 
-      {/* Bullion Selection Grid */}
+      {/* Multi-Step Redemption Flow */}
+      <Card className="glass border-[#2A2A2A] bg-[#111111]">
+        <CardContent>
+          {/* Step Indicators */}
+          <div className="flex items-center gap-2 mb-4">
+            {['Select', 'Shipping', 'Verify'].map((label, idx) => {
+              const stepNum = idx + 1
+              return (
+                <div key={idx} className={`flex-1 h-2 rounded-full ${currentStep === stepNum ? 'bg-[#D4AF37]' : 'bg-[#444]'}`} />
+              )
+            })}
+          </div>
+
+          {/* Step 1: Select Metal */}
+          {currentStep === 1 && (
+            <div>
+              <h3 className="text-[#E8E8E8] font-semibold mb-2">Select Bullion</h3>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {bullionOptions.map((option) => {
+                  const price = calculatePrice(option.metal, option.weightGrams)
+                  const affordable = canAfford(option.metal, option.weightGrams)
+                  return (
+                    <Card
+                      key={option.id}
+                      className={`cursor-pointer p-4 transition-all duration-300 ${
+                        selectedOption === option.id ? 'border-[#D4AF37] gold-glow' : 'border-[#2A2A2A]'
+                      } ${!affordable ? 'opacity-50' : ''}`}
+                      onClick={() => setSelectedOption(option.id)}
+                    >
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <h4 className="text-[#E8E8E8] font-medium">{option.metal}</h4>
+                          <p className="text-xs text-[#888]">{option.weight}</p>
+                        </div>
+                        <p className="text-[#D4AF37] font-bold">{formatCurrency(price)}</p>
+                      </div>
+                      {!affordable && (
+                        <div className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                          <AlertTriangle className="h-3 w-3" /> Insufficient balance
+                        </div>
+                      )}
+                    </Card>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Shipping */}
+          {currentStep === 2 && selectedBullion && (
+            <div>
+              <h3 className="text-[#E8E8E8] font-semibold mb-2">Shipping Information</h3>
+              <div className="space-y-2">
+                {['name', 'address', 'city', 'country'].map((field) => (
+                  <input
+                    key={field}
+                    type="text"
+                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    value={(shippingInfo as any)[field]}
+                    onChange={(e) =>
+                      setShippingInfo((prev) => ({ ...prev, [field]: e.target.value }))
+                    }
+                    className="w-full p-2 rounded bg-[#222] text-[#E8E8E8] placeholder-[#888]"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Verify & Burn */}
+          {currentStep === 3 && selectedBullion && (
+            <div>
+              <h3 className="text-[#E8E8E8] font-semibold mb-2">Verify & Burn</h3>
+              <p className="text-[#888] mb-2">
+                Bullion: {selectedBullion.metal} {selectedBullion.weight} <br />
+                Requires: {selectedBullion.tokensRequired} APX-{selectedBullion.metal} tokens
+              </p>
+              <p className="text-[#888] mb-2">
+                Shipping to: {shippingInfo.name}, {shippingInfo.address}, {shippingInfo.city},{' '}
+                {shippingInfo.country}
+              </p>
+              <Button
+                disabled={isBurning || burnSuccess}
+                onClick={handleBurn}
+                className="mt-2"
+              >
+                {isBurning ? 'Processing Burn...' : burnSuccess ? 'Success!' : 'Burn Tokens'}
+              </Button>
+            </div>
+          )}
+
+          {/* Navigation */}
+          <div className="flex justify-between mt-4">
+            {currentStep > 1 && <Button variant="outline" onClick={handleBack}>Back</Button>}
+            {currentStep < 3 && (
+              <Button onClick={handleNext} disabled={currentStep === 1 && !selectedOption}>
+                Next
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Bullion Selection Grid (Original UI) */}
       <div>
         <h2 className="text-lg font-semibold text-[#E8E8E8] mb-4">Available Bullion Options</h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {bullionOptions.map((option) => {
             const price = calculatePrice(option.metal, option.weightGrams)
             const affordable = canAfford(option.metal, option.weightGrams)
-            
+
             return (
               <Card
                 key={option.id}
@@ -233,7 +316,7 @@ export function RedemptionView() {
         </div>
       </div>
 
-      {/* Info Cards */}
+      {/* Info Cards (Original UI) */}
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="glass border-[#2A2A2A] bg-[#111111]">
           <CardContent className="pt-6">
@@ -242,8 +325,7 @@ export function RedemptionView() {
               <div>
                 <h4 className="font-medium text-[#E8E8E8] mb-1">Secure Packaging</h4>
                 <p className="text-sm text-[#888888]">
-                  All bullion is shipped in tamper-evident, insured packaging with 
-                  real-time tracking throughout delivery.
+                  All bullion is shipped in tamper-evident, insured packaging with real-time tracking.
                 </p>
               </div>
             </div>
@@ -257,8 +339,7 @@ export function RedemptionView() {
               <div>
                 <h4 className="font-medium text-[#E8E8E8] mb-1">Global Delivery</h4>
                 <p className="text-sm text-[#888888]">
-                  We ship to 100+ countries worldwide. Delivery times vary from 
-                  5-15 business days depending on location.
+                  We ship to 100+ countries worldwide. Delivery times vary from 5-15 business days depending on location.
                 </p>
               </div>
             </div>
