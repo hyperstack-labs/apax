@@ -9,6 +9,7 @@ import { Progress } from '@/components/ui/progress'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useAPAXStore, formatWeight } from '@/lib/store'
 import { LiveSecurityTerminal } from '@/components/shared/live-security-terminal'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export function PorView() {
   const { vaultData, auditLogs } = useAPAXStore()
