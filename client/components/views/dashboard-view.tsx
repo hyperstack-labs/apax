@@ -1,13 +1,14 @@
-'use client'
+"use client";
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { PortfolioOverview } from '@/components/portfolio-overview'
 import { AssetAllocationChart } from '@/components/asset-allocation-chart'
 import { ShariaCertificationHub } from '@/components/sharia-certification-hub'
+import { MetalPriceHistoryChart } from '@/components/charts/metal-price-history'
 import BullionCard, { BullionCardSkeleton } from '@/components/ui/bullion-card'
 
-// 1. ADD NEW IMPORTS HERE
+
 import {
   HoverCard,
   HoverCardContent,
@@ -39,15 +40,19 @@ export function DashboardView() {
             <div key={i} className="flex gap-12 items-center">
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-terminal-sm">Network Connectivity: 100%</span>
+                <span className="text-terminal-sm">
+                  Network Connectivity: 100%
+                </span>
               </div>
 
               <span className="text-terminal-sm">Latest Block: #8,421,093</span>
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <span className="text-terminal-sm text-[#D4AF37] cursor-help underline decoration-dotted underline-offset-4 decoration-[#D4AF37]/30 hover:text-[#FFD700] transition-colors">
-                    Vault A1-X: Re-verified by Lead Auditor
-                  </span>
+                    
+                Vault A1-X: Re-verified by Lead Auditor
+                  
+              </span>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80 border-[#D4AF37]/30 bg-[#1A1A1A] text-left whitespace-normal">
                    <div className="space-y-2">
@@ -86,7 +91,7 @@ export function DashboardView() {
         <div className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded-lg gold-glow">
             <Image
-              src="/images/apax-logo.png"
+              src="/apax-logo.png"
               alt="APAX Emblem"
               fill
               className="object-cover"
@@ -95,6 +100,9 @@ export function DashboardView() {
         </div>
       </div>
 
+      {/* Metal price history chart */}
+      <MetalPriceHistoryChart />
+      
       {/* Portfolio Overview Stats */}
       <PortfolioOverview />
 
@@ -148,5 +156,5 @@ export function DashboardView() {
       </div>
       
     </div>
-  )
+  );
 }

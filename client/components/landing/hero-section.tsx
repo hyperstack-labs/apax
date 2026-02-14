@@ -123,7 +123,7 @@ export function HeroSection() {
                 </div>
 
                 <Image
-                  src="/images/apax-logo.png"
+                  src="/apax-logo.png"
                   alt="APAX Token"
                   width={380}
                   height={380}
@@ -133,27 +133,19 @@ export function HeroSection() {
               </div>
 
               {/* Data Cards - Asymmetric placement */}
-              <div className="absolute -top-6 -left-4 glass-heavy rounded-sm p-4 border-gold-subtle" style={{ transform: 'rotate(-2deg)' }}>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-sm bg-[#D4AF37]/10 flex items-center justify-center">
-                    <TrendUp weight="light" className="w-4 h-4 text-[#D4AF37] icon-bespoke" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-[#888888] uppercase tracking-wider">XAU Spot</p>
-                    <p className="text-sm font-mono text-[#D4AF37]">$2,342.50</p>
-                  </div>
+              <div className="absolute -top-6 -left-4 flex items-center gap-3" style={{ transform: 'rotate(-2deg)' }}>
+                <TrendUp weight="light" className="w-5 h-5 text-[#D4AF37] icon-bespoke" />
+                <div>
+                  <p className="text-[10px] text-[#888888] uppercase tracking-wider">XAU Spot</p>
+                  <p className="text-sm font-mono text-[#D4AF37]">$2,342.50</p>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -right-6 glass-heavy rounded-sm p-4 border-gold-subtle" style={{ transform: 'rotate(1deg)' }}>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-sm bg-emerald-500/10 flex items-center justify-center">
-                    <Bank weight="light" className="w-4 h-4 text-emerald-500 icon-bespoke" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-[#888888] uppercase tracking-wider">Vault Status</p>
-                    <p className="text-sm font-mono text-emerald-500">Verified</p>
-                  </div>
+              <div className="absolute -bottom-4 -right-6 flex items-center gap-3" style={{ transform: 'rotate(1deg)' }}>
+                <Bank weight="light" className="w-5 h-5 text-emerald-500 icon-bespoke" />
+                <div>
+                  <p className="text-[10px] text-[#888888] uppercase tracking-wider">Vault Status</p>
+                  <p className="text-sm font-mono text-emerald-500">Verified</p>
                 </div>
               </div>
             </div>

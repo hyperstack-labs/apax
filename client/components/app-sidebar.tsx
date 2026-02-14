@@ -75,7 +75,7 @@ export function AppSidebar() {
         <div className="flex items-center gap-3">
           <div className="relative h-10 w-10 overflow-hidden rounded-lg gold-glow">
             <Image
-              src="/images/apax-logo.png"
+              src="/apax-logo.png"
               alt="APAX Logo"
               fill
               className="object-cover"
