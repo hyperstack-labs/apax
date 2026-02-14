@@ -7,13 +7,7 @@ import { AssetAllocationChart } from '@/components/asset-allocation-chart'
 import { ShariaCertificationHub } from '@/components/sharia-certification-hub'
 import { MetalPriceHistoryChart } from '@/components/charts/metal-price-history'
 import BullionCard, { BullionCardSkeleton } from '@/components/ui/bullion-card'
-
-
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
+import { HoverCard, HoverCardContent, HoverCardTrigger, HoverCardSkeleton} from "@/components/ui/hover-card"
 
 export function DashboardView() {
   const showroomItems = [
