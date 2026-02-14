@@ -324,8 +324,9 @@ function PorViewSkeleton() {
 
 
       {/* Main Grid Skeleton */}
-      <div className="grid gap-6 lg:griid-cols-2">
-        {/* Left Card Skeleton */}
+     <div className="grid gap-6 lg:grid-cols-2">
+        
+        {/* LEFT CARD: Vault Holdings Panel */}
         <Card className="bg-[#111111] border-[#2A2A2A]">
           <CardHeader className="flex flex-row items-center gap-4">
              <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
@@ -335,21 +336,16 @@ function PorViewSkeleton() {
              </div>
           </CardHeader>
           <CardContent className="space-y-4">
+            {/* Row 1: Gold Mimic */}
             <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
                <div className="flex justify-between">
-                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
-                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" /> {/* Label */}
+                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" /> {/* Value */}
                </div>
-               <Skeleton className="h-2 w-full bg-[#1A1A1A]" /> 
+               <Skeleton className="h-2 w-full bg-[#1A1A1A]" /> {/* Progress Bar */}
             </div>
 
-            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
-               <div className="flex justify-between">
-                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
-                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
-               </div>
-               <Skeleton className="h-2 w-full bg-[#1A1A1A]" />
-            </div>
+            {/* Row 2: Silver Mimic */}
             <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
                <div className="flex justify-between">
                  <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
@@ -358,6 +354,16 @@ function PorViewSkeleton() {
                <Skeleton className="h-2 w-full bg-[#1A1A1A]" />
             </div>
 
+            {/* Row 3: Platinum Mimic */}
+            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
+                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-2 w-full bg-[#1A1A1A]" />
+            </div>
+
+            {/* Bottom Total Row */}
             <div className="pt-4 border-t border-[#2A2A2A] flex justify-between">
               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
               <Skeleton className="h-6 w-40 bg-[#1A1A1A]" />
@@ -365,7 +371,7 @@ function PorViewSkeleton() {
           </CardContent>
         </Card>
 
-        {/* Right Card Skeleton (Tokens) */}
+        {/* RIGHT CARD: Token Supply Panel */}
         <Card className="bg-[#111111] border-[#2A2A2A]">
           <CardHeader className="flex flex-row items-center gap-4">
              <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
@@ -408,7 +414,7 @@ function PorViewSkeleton() {
             </div>
           </CardContent>
         </Card>
-
+      </div>
         {/* Live Security Feed skeleton*/}
 
         <Card className="bg-[#111111] border-[#2A2A2A]">
@@ -434,7 +440,7 @@ function PorViewSkeleton() {
 
         </Card>
       </div>
-    </div>
+    
     
   )
 }
