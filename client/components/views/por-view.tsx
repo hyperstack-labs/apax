@@ -339,10 +339,10 @@ function PorViewSkeleton() {
             {/* Row 1: Gold Mimic */}
             <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
                <div className="flex justify-between">
-                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" /> {/* Label */}
-                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" /> {/* Value */}
+                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" /> 
+                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
                </div>
-               <Skeleton className="h-2 w-full bg-[#1A1A1A]" /> {/* Progress Bar */}
+               <Skeleton className="h-2 w-full bg-[#1A1A1A]" /> 
             </div>
 
             {/* Row 2: Silver Mimic */}
