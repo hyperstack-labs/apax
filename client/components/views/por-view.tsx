@@ -15,6 +15,13 @@ export function PorView() {
   const { vaultData, auditLogs } = useAPAXStore()
   const [isRefreshing, setIsRefreshing] = useState(false)
 
+  const [isLoading, setIsLoading ] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    return() => clearTimeout(timer)
+  }, [])
+
   // Calculate reserve ratio
   const totalMetalGrams = vaultData.totalGoldGrams + vaultData.totalSilverGrams + vaultData.totalPlatinumGrams
   const reserveRatio = (totalMetalGrams / vaultData.totalTokensMinted) * 100
