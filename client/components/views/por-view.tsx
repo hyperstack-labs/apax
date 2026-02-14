@@ -344,7 +344,21 @@ function PorViewSkeleton() {
             </CardContent>
           </Card>
 
+          <Card className="bg-[#111111] border-[#2A2A2A]" >
+              <CardHeader className="flex flex-row items-center gap-4">
+                <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]"/>
+                
+                <div className="space-y-2">
+                  <Skeleton className="h-5 w-48 bg-[#1A1A1A]"/>
+                  <Skeleton className="h-4 w-32 bg-[#1A1A1A]"/>
+                </div>
 
+              </CardHeader>
+
+              <CardContent className="space-y-4"> 
+
+                </CardContent>
+          </Card>
 
       </div>
     </div>
