@@ -418,27 +418,25 @@ function PorViewSkeleton() {
         {/* Live Security Feed skeleton*/}
 
         <Card className="bg-[#111111] border-[#2A2A2A]">
-          <CardHeader className="flex justify-between items-center border-b border-[#2A2A2A] pb-4">
+        <CardHeader className="flex justify-between items-center border-b border-[#2A2A2A] pb-4">
            <div className="flex gap-4 items-center">
-            <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]"/>
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-32 bg-[#1A1A1A]"/>
-                <Skeleton className="h-3 w-47 bg-[#1A1A1A]"/>
-              </div>
+             <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+             <div className="space-y-2">
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+               <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+             </div>
            </div>
-          </CardHeader>
-
-          <CardContent className="p-0 pl-4">
-            <div className="h-87.5 w-full pr-4 py-4 space-y-3">
-              <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A] border border-[#2A2A2A]"/>
-              <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A] border border-[#2A2A2A]"/>
-              <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A] border border-[#2A2A2A]"/>
-              <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A] border border-[#2A2A2A]"/>
-
-            </div>
-          </CardContent>
-
-        </Card>
+           <Skeleton className="h-8 w-24 bg-[#1A1A1A]" />
+        </CardHeader>
+        <CardContent className="p-0 pl-4">
+          <div className="h-87.5 w-full pr-4 py-4 space-y-3">
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+          </div>
+        </CardContent>
+      </Card>
       </div>
     
     
