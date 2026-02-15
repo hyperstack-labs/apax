@@ -5,10 +5,6 @@ import { PortfolioOverview } from "@/components/portfolio-overview";
 import { AssetAllocationChart } from "@/components/asset-allocation-chart";
 import { ShariaCertificationHub } from "@/components/sharia-certification-hub";
 import { MetalPriceHistoryChart } from "@/components/charts/metal-price-history";
-import Image from 'next/image'
-import { PortfolioOverview } from '@/components/portfolio-overview'
-import { AssetAllocationChart } from '@/components/asset-allocation-chart'
-import { ShariaCertificationHub } from '@/components/sharia-certification-hub'
 import BullionCard from '@/components/ui/bullion-card'
 
 export function DashboardView() {
