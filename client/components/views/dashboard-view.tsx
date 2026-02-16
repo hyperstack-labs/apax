@@ -7,6 +7,7 @@ import { ShariaCertificationHub } from "@/components/sharia-certification-hub";
 import { MetalPriceHistoryChart } from "@/components/charts/metal-price-history";
 import BullionCard from '@/components/ui/bullion-card'
 import { useEffect, useState } from 'react'
+import { BullionCardSkeleton } from "@/components/ui/bullion-card";
 import { HoverCard, HoverCardContent, HoverCardTrigger, HoverCardSkeleton} from "@/components/ui/hover-card"
 
 
