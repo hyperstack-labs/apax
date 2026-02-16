@@ -1,5 +1,5 @@
 'use client'
-
+import jsPDF from 'jspdf'
 import { useState, useEffect } from 'react'
 import { Calculator, Info, CheckCircle, Coins, TrendUp, Heart } from '@phosphor-icons/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,30 +11,58 @@ import { Separator } from '@/components/ui/separator'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
 import {
   Tooltip,
-  TooltipContent,
+  TooltipContent, 
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+
+
 
 export function ZakatView() {
   const { userHoldings, metalPrices, zakatCalculation, calculateZakat } = useAPAXStore()
   const [additionalCash, setAdditionalCash] = useState(0)
   const [hasCalculated, setHasCalculated] = useState(false)
+  const [tradeGoods, setTradeGoods] = useState(0)
+  const [stocks, setStocks] = useState(0)
+  const [liabilities, setLiabilities] = useState(0)
 
   // Calculate asset values
   const goldValue = userHoldings.goldGrams * (metalPrices.gold / 31.1035)
   const silverValue = userHoldings.silverGrams * (metalPrices.silver / 31.1035)
   const platinumValue = userHoldings.platinumGrams * (metalPrices.platinum / 31.1035)
   const totalApaxValue = goldValue + silverValue + platinumValue
-  const totalAssets = totalApaxValue + additionalCash
+  const totalAssets =
+  totalApaxValue +
+  additionalCash +
+  tradeGoods +
+  stocks
+
+  const netZakatableWealth = Math.max(totalAssets - liabilities, 0)
+
 
   // Nisab calculation (85g gold or 595g silver - use lower value)
   const nisabGold = 85 * (metalPrices.gold / 31.1035)
   const nisabSilver = 595 * (metalPrices.silver / 31.1035)
   const nisabThreshold = Math.min(nisabGold, nisabSilver)
 
-  const isAboveNisab = totalAssets >= nisabThreshold
-  const zakatDue = isAboveNisab ? totalAssets * 0.025 : 0
+  const isAboveNisab = netZakatableWealth >= nisabThreshold
+  const zakatDue = isAboveNisab ? netZakatableWealth * 0.025 : 0
+
+  const generateZakatPDF = () => {
+  const doc = new jsPDF()
+
+  doc.setFontSize(18)
+  doc.text("APAX Zakat Summary", 20, 20)
+
+  doc.setFontSize(12)
+  doc.text(`Net Zakatable Wealth: ${formatCurrency(netZakatableWealth)}`, 20, 40)
+  doc.text(`Zakat Due (2.5%): ${formatCurrency(zakatDue)}`, 20, 50)
+
+  doc.save("APAX-Zakat-Summary.pdf")
+}
+
+
+
 
   const handleCalculate = () => {
     calculateZakat()
@@ -173,6 +201,47 @@ export function ZakatView() {
                       className="pl-8 bg-[#0A0A0A] border-[#2A2A2A] text-[#E8E8E8] focus:border-[#D4AF37] focus:ring-[#D4AF37]/20"
                     />
                   </div>
+                    {/* Trade Goods */}
+                    <div className="space-y-2">
+                      <Label className="text-[#E8E8E8]">
+                        Trade Goods (USD)
+                      </Label>
+                      <Input
+                        type="number"
+                        placeholder="0.00"
+                        value={tradeGoods || ''}
+                        onChange={(e) => setTradeGoods(Number(e.target.value) || 0)}
+                        className="bg-[#0A0A0A] border-[#2A2A2A] text-[#E8E8E8]"
+                      />
+                    </div>
+
+                    {/* Stocks */}
+                    <div className="space-y-2">
+                      <Label className="text-[#E8E8E8]">
+                        Stocks / Investments (USD)
+                      </Label>
+                      <Input
+                        type="number"
+                        placeholder="0.00"
+                        value={stocks || ''}
+                        onChange={(e) => setStocks(Number(e.target.value) || 0)}
+                        className="bg-[#0A0A0A] border-[#2A2A2A] text-[#E8E8E8]"
+                      />
+                    </div>
+
+                    {/* Liabilities */}
+                    <div className="space-y-2">
+                      <Label className="text-[#E8E8E8]">
+                        Outstanding Liabilities (USD)
+                      </Label>
+                      <Input
+                        type="number"
+                        placeholder="0.00"
+                        value={liabilities || ''}
+                        onChange={(e) => setLiabilities(Number(e.target.value) || 0)}
+                        className="bg-[#0A0A0A] border-[#2A2A2A] text-[#E8E8E8]"
+                      />
+                    </div>
                 </div>
               </div>
             </CardContent>
@@ -200,7 +269,7 @@ export function ZakatView() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-[#888888]">Your Total Assets</span>
                   <span className="font-medium text-[#E8E8E8]">
-                    {formatCurrency(totalAssets)}
+                    {formatCurrency(netZakatableWealth)}
                   </span>
                 </div>
                 <Separator className="bg-[#2A2A2A]" />
@@ -249,6 +318,13 @@ export function ZakatView() {
                 <Calculator weight="light" className="h-4 w-4 mr-2" />
                 Recalculate Zakat
               </Button>
+              <Button
+  onClick={generateZakatPDF}
+  className="w-full mt-3 border-[#D4AF37]/40 text-[#D4AF37] bg-transparent hover:bg-[#D4AF37]/10"
+>
+  Export Zakat Summary PDF
+</Button>
+
             </CardContent>
           </Card>
 
