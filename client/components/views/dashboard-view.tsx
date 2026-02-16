@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { PortfolioOverview } from '@/components/portfolio-overview'
-import { AssetAllocationChart } from '@/components/asset-allocation-chart'
-import { ShariaCertificationHub } from '@/components/sharia-certification-hub'
-import { MetalPriceHistoryChart } from '@/components/charts/metal-price-history'
-import BullionCard, { BullionCardSkeleton } from '@/components/ui/bullion-card'
+import Image from "next/image";
+import { PortfolioOverview } from "@/components/portfolio-overview";
+import { AssetAllocationChart } from "@/components/asset-allocation-chart";
+import { ShariaCertificationHub } from "@/components/sharia-certification-hub";
+import { MetalPriceHistoryChart } from "@/components/charts/metal-price-history";
+import BullionCard from '@/components/ui/bullion-card'
+import { useEffect, useState } from 'react'
 import { HoverCard, HoverCardContent, HoverCardTrigger, HoverCardSkeleton} from "@/components/ui/hover-card"
+
+
 
 export function DashboardView() {
   const showroomItems = [
