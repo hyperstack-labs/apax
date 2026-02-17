@@ -3,6 +3,7 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const COLORS = {
   gold: '#D4AF37',
