@@ -4,6 +4,9 @@ import { FileText, Download, Shield, CheckCircle, ExternalLink } from 'lucide-re
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
+import {useEffect, useState } from 'react'
+
 
 const certifications = [
   {
@@ -51,7 +54,25 @@ const typeIcons = {
   report: '📋'
 }
 
+
+
+
+
+
 export function ShariaCertificationHub() {
+  
+  const [isLoading, setIsLoading ] = useState(true);
+
+   useEffect(() => 
+  {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  })
+
+    if (isLoading) {
+      return <ShariaCertificationHubSkeleton />
+    }
   return (
     <Card className="glass border-[#2A2A2A] bg-[#111111]">
       <CardHeader className="p-4 pb-2">
@@ -147,6 +168,79 @@ export function ShariaCertificationHub() {
             >
               Verify
             </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function ShariaCertificationHubSkeleton() {
+  return (
+    <Card className="glass border-[#2A2A2A] bg-[#111111]">
+      <CardHeader className="p-4 pb-2">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5 min-w-0">
+            {/* Shield Icon Placeholder */}
+            <Skeleton className="h-7 w-7 rounded-lg bg-[#1A1A1A] shrink-0" />
+            
+            <div className="min-w-0 space-y-1.5">
+              {/* Title Placeholder */}
+              <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+              {/* Description Placeholder (Hidden on mobile to match real component) */}
+              <Skeleton className="h-2 w-48 bg-[#1A1A1A] hidden sm:block" />
+            </div>
+          </div>
+          
+          {/* Badge Placeholder */}
+          <Skeleton className="h-6 w-20 rounded-full bg-[#1A1A1A] shrink-0" />
+        </div>
+      </CardHeader>
+
+      <CardContent className="p-4 pt-0">
+        {/* Certificate Grid Skeleton */}
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 2xl:grid-cols-2">
+          {/* Generate 2 placeholders to match typical list size */}
+          {[...Array(2)].map((_, i) => (
+            <div
+              key={i}
+              className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A]"
+            >
+              <div className="flex items-start gap-2.5">
+                {/* Certificate Icon */}
+                <Skeleton className="h-10 w-10 rounded-md bg-[#1A1A1A] shrink-0" />
+                
+                <div className="flex-1 space-y-2 min-w-0">
+                  {/* Cert Title */}
+                  <Skeleton className="h-3.5 w-3/4 bg-[#1A1A1A]" />
+                  {/* Cert Description (2 lines) */}
+                  <div className="space-y-1">
+                    <Skeleton className="h-2.5 w-full bg-[#1A1A1A]" />
+                    <Skeleton className="h-2.5 w-5/6 bg-[#1A1A1A]" />
+                  </div>
+                  {/* Meta Row (Issuer | Date) */}
+                  <Skeleton className="h-2 w-1/2 bg-[#1A1A1A]" />
+                </div>
+              </div>
+
+              {/* Action Buttons Row */}
+              <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#2A2A2A]">
+                <Skeleton className="h-7 flex-1 rounded bg-[#1A1A1A]" />
+                <Skeleton className="h-7 flex-1 rounded bg-[#1A1A1A]" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Verification Banner Skeleton */}
+        <div className="mt-3 p-3 rounded-lg border border-[#2A2A2A] bg-[#1A1A1A]/30">
+          <div className="flex items-center gap-3">
+             <Skeleton className="h-4 w-4 rounded-sm bg-[#1A1A1A] shrink-0" />
+             <div className="flex-1 space-y-1.5">
+                <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+                <Skeleton className="h-2 w-32 bg-[#1A1A1A]" />
+             </div>
+             <Skeleton className="h-7 w-16 rounded bg-[#1A1A1A] shrink-0" />
           </div>
         </div>
       </CardContent>
