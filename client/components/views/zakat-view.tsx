@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Tooltip,
   TooltipContent, 
@@ -68,6 +69,20 @@ export function ZakatView() {
     calculateZakat()
     setHasCalculated(true)
   }
+
+  // useState and useEffect for testing
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+  }, [])
+
+  if(isLoading) {
+    return <ZakatViewSkeleton />
+  }
+
 
   return (
     <div className="space-y-6">
@@ -384,6 +399,166 @@ export function ZakatView() {
           </Card>
         </div>
       </div>
+    </div>
+  )
+}
+
+function ZakatViewSkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* Page Header Skeleton */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-48 bg-[#1A1A1A]" />
+          <Skeleton className="h-4 w-64 bg-[#1A1A1A]" />
+        </div>
+        <Skeleton className="h-10 w-10 rounded-md bg-[#1A1A1A]" />
+      </div>
+
+       {/* 2. Main Grid Skeleton */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        
+        {/* LEFT COLUMN (Assets) */}
+        <div className="lg:col-span-2 space-y-6">
+          
+          {/* APAX Holdings Card Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader className="flex flex-row items-center gap-3">
+               <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
+               <div className="space-y-2">
+                 <Skeleton className="h-5 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-56 bg-[#1A1A1A]" />
+               </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* 3-Col Asset Grid */}
+              <div className="grid gap-4 md:grid-cols-3">
+                 {/* Item 1 */}
+                 <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-20 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                 </div>
+                 {/* Item 2 */}
+                 <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-20 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                 </div>
+                 {/* Item 3 */}
+                 <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-20 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                 </div>
+              </div>
+
+              <div className="h-px w-full bg-[#2A2A2A]" />
+
+              {/* Total Row */}
+              <div className="flex items-center justify-between">
+                <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+                <Skeleton className="h-7 w-32 bg-[#1A1A1A]" />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Additional Assets Card Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader>
+               <Skeleton className="h-5 w-48 mb-2 bg-[#1A1A1A]" />
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+            </CardHeader>
+            <CardContent>
+               <div className="space-y-2">
+                 <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-10 w-full rounded-md bg-[#0A0A0A] border border-[#2A2A2A]" />
+               </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* RIGHT COLUMN (Summary) */}
+        <div className="space-y-6">
+          
+          {/* Nisab Status Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader className="pb-3">
+               <Skeleton className="h-6 w-32 bg-[#1A1A1A]" />
+            </CardHeader>
+            <CardContent className="space-y-4">
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-20 bg-[#1A1A1A]" />
+               </div>
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-28 bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+               </div>
+               <div className="h-px w-full bg-[#2A2A2A]" />
+               <div className="flex items-center gap-2">
+                 <Skeleton className="h-4 w-4 rounded-full bg-[#1A1A1A]" />
+                 <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+               </div>
+            </CardContent>
+          </Card>
+
+          {/* Zakat Due Calculation Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+            <CardHeader className="pb-3 flex flex-row gap-3 items-center">
+               <Skeleton className="h-5 w-5 bg-[#1A1A1A]" />
+               <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+            </CardHeader>
+            <CardContent>
+               <div className="flex flex-col items-center py-4 space-y-3">
+                 <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+                 <Skeleton className="h-10 w-32 bg-[#1A1A1A]" />
+                 <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-10 w-full rounded-md mt-4 bg-[#1A1A1A]" />
+            </CardContent>
+          </Card>
+
+          {/* Live Prices Skeleton */}
+          <Card className="bg-[#111111] border-[#2A2A2A]">
+             <CardContent className="pt-6 space-y-4">
+                <div className="flex items-center gap-2">
+                   <Skeleton className="h-4 w-4 bg-[#1A1A1A]" />
+                   <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+                </div>
+                <div className="space-y-3">
+                   <div className="flex justify-between">
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                   </div>
+                   <div className="flex justify-between">
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                   </div>
+                   <div className="flex justify-between">
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+                   </div>
+                </div>
+             </CardContent>
+          </Card>
+
+        </div>
+
+        
+      </div>
+
+
+     
     </div>
   )
 }

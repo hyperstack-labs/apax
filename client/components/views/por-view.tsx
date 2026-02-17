@@ -2,17 +2,25 @@
 
 import { useState, useEffect } from 'react'
 import { ShieldCheck, CheckCircle, ArrowsClockwise, ArrowSquareOut, Clock, Database, Coins, WarningCircle } from '@phosphor-icons/react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardSkeleton } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useAPAXStore, formatWeight } from '@/lib/store'
 import { LiveSecurityTerminal } from '@/components/shared/live-security-terminal'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export function PorView() {
   const { vaultData, auditLogs } = useAPAXStore()
   const [isRefreshing, setIsRefreshing] = useState(false)
+
+  const [isLoading, setIsLoading ] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    return() => clearTimeout(timer)
+  }, [])
 
   // Calculate reserve ratio
   const totalMetalGrams = vaultData.totalGoldGrams + vaultData.totalSilverGrams + vaultData.totalPlatinumGrams
@@ -33,6 +41,10 @@ export function PorView() {
     if (diffMins < 60) return `${diffMins}m ago`
     if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h ago`
     return `${Math.floor(diffMins / 1440)}d ago`
+  }
+
+  if(isLoading) {
+    return <PorViewSkeleton />
   }
 
   return (
@@ -292,5 +304,141 @@ export function PorView() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+function PorViewSkeleton() {
+  return (
+
+    <div className="space-y-6">
+      {/* Header Skeleton */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
+          <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
+        </div>
+        <Skeleton className="h-10 w-32 bg-[#1A1A1A]" />
+      </div>
+    {/* Banner Skeleton */}
+    <Skeleton className="h-28 w-full rounded-xl bg-[#1A1A1A]" />
+
+
+      {/* Main Grid Skeleton */}
+     <div className="grid gap-6 lg:grid-cols-2">
+        
+        {/* LEFT CARD: Vault Holdings Panel */}
+        <Card className="bg-[#111111] border-[#2A2A2A]">
+          <CardHeader className="flex flex-row items-center gap-4">
+             <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
+             <div className="space-y-2">
+               <Skeleton className="h-5 w-48 bg-[#1A1A1A]" />
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+             </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/*  Gold Mimic */}
+            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" /> 
+                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-2 w-full bg-[#1A1A1A]" /> 
+            </div>
+
+            {/*  Silver Mimic */}
+            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
+                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-2 w-full bg-[#1A1A1A]" />
+            </div>
+
+            {/*  Platinum Mimic */}
+            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] space-y-3">
+               <div className="flex justify-between">
+                 <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
+                 <Skeleton className="h-6 w-24 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-2 w-full bg-[#1A1A1A]" />
+            </div>
+
+            {/* Bottom Total Row */}
+            <div className="pt-4 border-t border-[#2A2A2A] flex justify-between">
+              <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+              <Skeleton className="h-6 w-40 bg-[#1A1A1A]" />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* RIGHT CARD: Token Supply Panel */}
+        <Card className="bg-[#111111] border-[#2A2A2A]">
+          <CardHeader className="flex flex-row items-center gap-4">
+             <Skeleton className="h-10 w-10 rounded-lg bg-[#1A1A1A]" />
+             <div className="space-y-2">
+               <Skeleton className="h-5 w-48 bg-[#1A1A1A]" />
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+             </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Big Token Number Block */}
+            <div className="p-6 rounded-lg border border-[#2A2A2A] bg-[#1A1A1A]/20 flex flex-col items-center gap-2">
+               <Skeleton className="h-4 w-40 bg-[#1A1A1A]" />
+               <Skeleton className="h-10 w-64 bg-[#1A1A1A]" />
+               <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+            </div>
+
+            {/* 3 Small Grids Breakdown */}
+            <div className="grid grid-cols-3 gap-3">
+               <div className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center gap-2">
+                  <Skeleton className="h-3 w-12 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+               <div className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center gap-2">
+                  <Skeleton className="h-3 w-12 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+               <div className="p-3 rounded-lg border border-[#2A2A2A] bg-[#0A0A0A] flex flex-col items-center gap-2">
+                  <Skeleton className="h-3 w-12 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+            </div>
+
+            {/* Reserve Ratio Bottom Block */}
+            <div className="p-4 rounded-lg border border-[#2A2A2A] bg-[#1A1A1A]/20 space-y-3">
+               <div className="flex justify-between">
+                  <Skeleton className="h-5 w-32 bg-[#1A1A1A]" />
+                  <Skeleton className="h-6 w-16 bg-[#1A1A1A]" />
+               </div>
+               <Skeleton className="h-3 w-full bg-[#1A1A1A]" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+        {/* Live Security Feed skeleton*/}
+
+        <Card className="bg-[#111111] border-[#2A2A2A]">
+        <CardHeader className="flex justify-between items-center border-b border-[#2A2A2A] pb-4">
+           <div className="flex gap-4 items-center">
+             <Skeleton className="h-3 w-3 rounded-full bg-[#1A1A1A]" />
+             <div className="space-y-2">
+               <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+               <Skeleton className="h-3 w-48 bg-[#1A1A1A]" />
+             </div>
+           </div>
+           <Skeleton className="h-8 w-24 bg-[#1A1A1A]" />
+        </CardHeader>
+        <CardContent className="p-0 pl-4">
+          <div className="h-87.5 w-full pr-4 py-4 space-y-3">
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+             <Skeleton className="h-16 w-full rounded-lg bg-[#1A1A1A]/50 border border-[#2A2A2A]" />
+          </div>
+        </CardContent>
+      </Card>
+      </div>
+    
+    
   )
 }

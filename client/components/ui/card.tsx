@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
+import { Skeleton } from '@/components/ui/skeleton'
 
 function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
@@ -81,6 +82,35 @@ function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
+
+function CardSkeleton ({ className, ...props}: React.ComponentProps<'div'>) {
+ return (
+ 
+    <div
+      data-slot="card-skeleton"
+      className={cn(
+        'flex flex-col gap-6 py-6 shadow-sm rounded-xl border bg-card',
+      className
+      )}
+      {...props}
+      >
+      <div className="flex flex-col gap-2 px-6">
+        <Skeleton className="h-5 w-1/3" />
+        <Skeleton className="h-4 w-2/3" />
+      </div>
+      
+      <div className="px-6 flex-1">
+        <Skeleton className="h-24 w-full"/>
+      </div>
+
+      <div className="px-6">
+        <Skeleton className="h-9 w-28"/>
+      </div>
+    </div>
+
+  )
+}
+
 export {
   Card,
   CardHeader,
@@ -89,4 +119,5 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardSkeleton
 }

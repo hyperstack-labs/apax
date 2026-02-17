@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Flame, Package, Truck, Clock, Info, AlertTriangle } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const bullionOptions = [
   { id: 'gold-1g', metal: 'Gold', weight: '1g', weightGrams: 1, image: '/images/image.png', color: '#D4AF37', tokensRequired: 1 },
@@ -19,6 +20,9 @@ const bullionOptions = [
 
 type Step = 1 | 2 | 3
 
+// For simultion of Loading. Will remove it once data fetching is implemented
+
+
 export function RedemptionView() {
   const { userHoldings, metalPrices } = useAPAXStore()
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
@@ -26,8 +30,22 @@ export function RedemptionView() {
   const [shippingInfo, setShippingInfo] = useState({ name: '', address: '', city: '', country: '' })
   const [isBurning, setIsBurning] = useState(false)
   const [burnSuccess, setBurnSuccess] = useState(false)
+  
 
   const selectedBullion = bullionOptions.find((b) => b.id === selectedOption)
+
+
+  const [ isLoading, setIsLoading ] = useState(true)
+
+useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    return() => clearTimeout(timer)
+  }, [])
+
+useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    return() => clearTimeout(timer)
+  }, [])
 
   const calculatePrice = (metal: string, grams: number) => {
     const pricePerGram =
@@ -43,6 +61,10 @@ export function RedemptionView() {
     if (metal === 'Gold') return userHoldings.goldGrams >= grams
     if (metal === 'Silver') return userHoldings.silverGrams >= grams
     return userHoldings.platinumGrams >= grams
+  }
+
+  if(isLoading) {
+    return <RedemptionViewSkeleton />
   }
 
   const handleNext = () => {
@@ -359,6 +381,103 @@ export function RedemptionView() {
                 minting, verification, and insured shipping costs.
               </p>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+
+function RedemptionViewSkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* Page Header Skeleton */}
+      <div className="flex items-center justify-between">
+        <div className="space-y-2">
+          <Skeleton className="h-8 w-64 bg-[#1A1A1A]" />
+          <Skeleton className="h-4 w-96 bg-[#1A1A1A]" />
+        </div>
+        <Skeleton className="h-6 w-32 rounded-full bg-[#1A1A1A]" />
+      </div>
+      {/* Coming Soon Banner Skeleton */}
+      <Card className="border-[#D4AF37]/30 bg-[#1A1A1A]/50">
+        <CardContent className="py-6">
+          <div className="flex items-center gap-4">
+            <Skeleton className="h-14 w-14 rounded-full bg-[#1A1A1A]" />
+            <div className="flex-1 space-y-2">
+              <Skeleton className="h-6 w-48 bg-[#1A1A1A]" />
+              <Skeleton className="h-4 w-full max-w-2xl bg-[#1A1A1A]" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      {/*  "How It Works" Skeleton */}
+      <Card className="bg-[#111111] border-[#2A2A2A]">
+        <CardHeader>
+          <Skeleton className="h-6 w-64 bg-[#1A1A1A]" />
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-6 md:grid-cols-4">
+            {/* Generate 4 Step Placeholders */}
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex flex-col items-center text-center space-y-3">
+                <Skeleton className="h-12 w-12 rounded-full bg-[#1A1A1A]" />
+                <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+                <Skeleton className="h-3 w-32 bg-[#1A1A1A]" />
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      
+      {/* Bullion Selection Grid Skeleton */}
+      <div>
+        <Skeleton className="h-6 w-56 mb-4 bg-[#1A1A1A]" />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(3)].map((_, i) => (
+            <Card key={i} className="bg-[#111111] border-[#2A2A2A]">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-4">
+                  <Skeleton className="h-20 w-20 rounded-lg bg-[#1A1A1A] shrink-0" />
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Skeleton className="h-4 w-16 bg-[#1A1A1A]" />
+                      <Skeleton className="h-4 w-12 rounded-full bg-[#1A1A1A]" />
+                    </div>
+                    <Skeleton className="h-7 w-24 bg-[#1A1A1A]" />
+                    <Skeleton className="h-3 w-32 bg-[#1A1A1A]" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Info Cards Skeleton */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {[...Array(2)].map((_, i) => (
+          <Card key={i} className="bg-[#111111] border-[#2A2A2A]">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <Skeleton className="h-5 w-5 bg-[#1A1A1A]" />
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-5 w-40 bg-[#1A1A1A]" />
+                  <Skeleton className="h-12 w-full bg-[#1A1A1A]" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+       {/* Fee Notice Skeleton */}
+      <Card className="border-[#2A2A2A] bg-[#1A1A1A]/30">
+        <CardContent className="py-4">
+          <div className="flex items-center gap-3">
+            <Skeleton className="h-5 w-5 bg-[#1A1A1A]" />
+            <Skeleton className="h-4 w-full max-w-lg bg-[#1A1A1A]" />
           </div>
         </CardContent>
       </Card>
