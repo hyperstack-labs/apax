@@ -1,8 +1,11 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { TrendUp, TrendDown, Wallet, Coins } from '@phosphor-icons/react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAPAXStore, formatCurrency, formatWeight } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
+import React from 'react'
 
 export function PortfolioOverview() {
   const { userHoldings, metalPrices } = useAPAXStore()
@@ -49,6 +52,17 @@ export function PortfolioOverview() {
     }
   ]
 
+  const [isLoading, setIsLoading ] = useState(true)
+
+  useEffect(() => {
+      const timer = setTimeout(() => setIsLoading(false), 2000)
+      return () => clearTimeout(timer)
+    }, [])
+  
+
+    if(isLoading) {
+      return <PortfolioOverviewSkeleton />
+    }
   return (
     <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {/* Primary Card - Spans 2 cols for visibility */}
@@ -119,6 +133,45 @@ export function PortfolioOverview() {
           <p className="text-[10px] md:text-xs text-[#888888] mt-0.5 font-vault">{formatCurrency(platinumValue)}</p>
         </CardContent>
       </Card>
+    </div>
+  )
+}
+
+ function PortfolioOverviewSkeleton() {
+ return (
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      
+      {/* 1. Primary Card Skeleton (Total Portfolio) */}
+      <Card className="sm:col-span-2 border-[#2A2A2A] bg-[#111111]">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <Skeleton className="h-4 w-32 bg-[#1A1A1A]" />
+          <Skeleton className="h-7 w-7 rounded-lg bg-[#1A1A1A]" />
+        </CardHeader>
+        <CardContent>
+          <Skeleton className="h-10 w-48 mb-3 bg-[#1A1A1A]" />
+          
+          {/* Trend Badge & Subtext */}
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-5 w-24 rounded-full bg-[#1A1A1A]" />
+            <Skeleton className="h-3 w-16 bg-[#1A1A1A]" />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Metal Token Cards Skeletons (Gold, Silver, Platinum) */}
+      {[...Array(3)].map((_, i) => (
+        <Card key={i} className="border-[#2A2A2A] bg-[#111111]">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1.5">
+            <Skeleton className="h-4 w-24 bg-[#1A1A1A]" />
+            <Skeleton className="h-7 w-7 rounded-lg bg-[#1A1A1A]" />
+          </CardHeader>
+          <CardContent>
+            <Skeleton className="h-8 w-32 mb-1.5 bg-[#1A1A1A]" />
+            <Skeleton className="h-3 w-20 bg-[#1A1A1A]" />
+          </CardContent>
+        </Card>
+      ))}
+      
     </div>
   )
 }
