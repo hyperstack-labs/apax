@@ -3,6 +3,8 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAPAXStore, formatCurrency } from '@/lib/store'
+import { Skeleton } from '@/components/ui/skeleton'
+import {useEffect, useState } from 'react'
 
 const COLORS = {
   gold: '#D4AF37',
@@ -50,6 +52,11 @@ export function AssetAllocationChart() {
     { name: 'Platinum', value: 10, color: COLORS.platinum }
   ]
 
+
+ 
+
+
+
   const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: typeof data[0] }> }) => {
     if (active && payload && payload.length) {
       const item = payload[0].payload
@@ -64,11 +71,25 @@ export function AssetAllocationChart() {
       )
     }
     return null
+
   }
+
+
+   const [isLoading, setIsLoading ] = useState(true);
+
+   useEffect(() => 
+  {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  })
+  if (isLoading) {
+      return <AssetAllocationSkeleton />
+    }
 
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      {/* Your Holdings Chart */}
+      {/* Holdings Chart */}
       <Card className="glass border-[#2A2A2A] bg-[#111111] overflow-hidden">
         <CardHeader className="p-4 pb-2">
           <CardTitle className="text-base md:text-lg text-[#E8E8E8] font-serif">Your Asset Allocation</CardTitle>
@@ -210,6 +231,88 @@ export function AssetAllocationChart() {
           </div>
         </CardContent>
       </Card>
+    </div>
+  )
+}
+
+
+function AssetAllocationSkeleton() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      
+      {/* 1. Left Card: Your Asset Allocation */}
+      <Card className="border-[#2A2A2A] bg-[#111111]">
+        <CardHeader className="p-4 pb-2 space-y-2">
+          <Skeleton className="h-6 w-48 bg-[#1A1A1A]" /> {/* Title */}
+          <Skeleton className="h-3 w-32 bg-[#1A1A1A]" /> {/* Desc */}
+        </CardHeader>
+        <CardContent className="p-4 py-8 flex flex-col items-center justify-center gap-6">
+          
+          {/* Donut Chart Placeholder */}
+          <div className="relative h-[180px] w-[180px] md:h-[200px] md:w-[200px] shrink-0">
+             <Skeleton className="h-full w-full rounded-full bg-[#1A1A1A]" />
+             <div className="absolute inset-4 rounded-full bg-[#111111]" /> 
+          </div>
+
+          {/* Legend Grid Placeholder */}
+          <div className="w-full max-w-sm">
+            <div className="grid grid-cols-3 gap-2">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="flex flex-col items-center gap-2">
+                   <div className="flex items-center gap-2">
+                     <Skeleton className="h-2 w-2 rounded-full bg-[#1A1A1A]" />
+                     <Skeleton className="h-3 w-8 bg-[#1A1A1A]" />
+                   </div>
+                   <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                   <Skeleton className="h-2 w-8 bg-[#1A1A1A]" />
+                </div>
+              ))}
+            </div>
+            {/* Divider Line */}
+            <div className="h-px w-full bg-[#2A2A2A] mt-4" />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Right Card: APX-i Index Token */}
+      <Card className="border-[#2A2A2A] bg-[#111111]">
+        <CardHeader className="p-4 pb-2">
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-8 w-8 rounded-full bg-[#1A1A1A]" />
+            <div className="space-y-1">
+              <Skeleton className="h-5 w-40 bg-[#1A1A1A]" />
+              <Skeleton className="h-3 w-24 bg-[#1A1A1A]" />
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="p-4 py-8 flex flex-col items-center justify-center gap-6">
+          
+          {/* Donut Chart Placeholder */}
+          <div className="relative h-[180px] w-[180px] md:h-[200px] md:w-[200px] shrink-0">
+             <Skeleton className="h-full w-full rounded-full bg-[#1A1A1A]" />
+             <div className="absolute inset-4 rounded-full bg-[#111111]" /> 
+          </div>
+
+          <div className="w-full max-w-sm">
+            {/* Legend Grid */}
+            <div className="grid grid-cols-3 gap-2 mb-6">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="flex flex-col items-center gap-2">
+                   <div className="flex items-center gap-2">
+                     <Skeleton className="h-2 w-2 rounded-full bg-[#1A1A1A]" />
+                     <Skeleton className="h-3 w-8 bg-[#1A1A1A]" />
+                   </div>
+                   <Skeleton className="h-4 w-12 bg-[#1A1A1A]" />
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom Holdings Box Placeholder */}
+            <Skeleton className="h-14 w-full rounded-lg bg-[#1A1A1A]" />
+          </div>
+        </CardContent>
+      </Card>
+
     </div>
   )
 }
